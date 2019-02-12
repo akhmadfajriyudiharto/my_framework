@@ -52,6 +52,10 @@ if (defined('ENVIRONMENT')){
 	}
 }
 
+$system_path = 'system';
+$application_folder = 'application';
+$view_folder = '';
+
 /**
  *Run checks for server path
  */
@@ -61,6 +65,24 @@ if (isset($_SERVER['PATH_INFO'])){
 }else{
 	$server = '/';
 }
+
+/*
+ * -------------------------------------------------------------------
+ *  Now that we know the path, set the main path constants
+ * -------------------------------------------------------------------
+ */
+// The name of THIS file
+define('SELF', pathinfo(__FILE__, PATHINFO_BASENAME));
+
+// Path to the system directory
+define('BASEPATH', $system_path);
+
+// Path to the front controller (this file) directory
+define('FCPATH', dirname(__FILE__).DIRECTORY_SEPARATOR);
+
+// Name of the "system" directory
+define('SYSDIR', basename(BASEPATH));
+
 
 switch (Init::is_slash($server))
 {
