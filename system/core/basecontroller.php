@@ -16,10 +16,11 @@ class BaseController {
 		if (empty($layout)) {
 			include($path);
 		}else{
-			$content = ob_get_contents($path);
-			ob_clean();
 
-			include($layout);
+			include($path);
+			$content = ob_get_contents();
+			ob_clean();
+			include(VIEWPATH.'/layouts/'.$layout.'.php');
 		}
     }
 

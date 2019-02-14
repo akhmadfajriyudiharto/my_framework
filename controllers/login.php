@@ -36,19 +36,8 @@ class Login extends BaseController{
 	public function keluar(){
 		$userModel = $this->model('user');
 
-		$user = $userModel->db->table($userModel->getTable())->where([array('username', $_POST['username']), ['username', $_POST['username']]])->get()->toArray();
-		
-		if (!empty($user[0])) {
-			$userModel->session->set_session_data('data_user', $user[0] );
-		}
-
-
-		if($userModel->auth->isAuthenticated()){
-			To('home');
-		}else{
-			$this->view('login');
-			echo "<script>alert('Email dan Password salah');</script>";
-		}
+		$userModel->session->remove_session();
+		To('home');
 	}
 }
 ?>

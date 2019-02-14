@@ -4,11 +4,13 @@ class Home extends BaseController{
 	private $model;
 
 	public function index(){
-		$this->view('home');
-	}
-
-	public function login(){
-		echo "Login Method";
+		$userModel = $this->model('user');
+		
+		if(!$userModel->auth->isAuthenticated()){
+			To('login');
+		}else{
+			$this->view('home');
+		}
 	}
 }
 ?>

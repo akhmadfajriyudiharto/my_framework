@@ -44,15 +44,18 @@ class Session {
             unset( $_SESSION[$session_name] );
         }
         else{
-            unset($_SESSION);
-            //session_unset();
-            //session_destroy();
+            // unset($_SESSION);
+            // session_unset();
+            session_destroy();
         }
     }
 
     //ambil data session
     public function get_session_data( $session_name ){
-        return $_SESSION[$session_name];
+        if (!empty($_SESSION[$session_name])) 
+            return $_SESSION[$session_name];
+        else
+            return false;
     }
 
     //set data session
